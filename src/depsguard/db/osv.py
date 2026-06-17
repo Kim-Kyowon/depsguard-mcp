@@ -1,6 +1,7 @@
 from __future__ import annotations
+
 from depsguard.http import make_client
-from depsguard.models import Package, Vulnerability, Severity
+from depsguard.models import Package, Severity, Vulnerability
 
 OSV_API = "https://api.osv.dev/v1/query"
 

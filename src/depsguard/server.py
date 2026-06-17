@@ -1,14 +1,13 @@
 from __future__ import annotations
-import asyncio
-import json
-import os
+
 from pathlib import Path
+
 from fastmcp import FastMCP
-from depsguard.models import ScanReport
-from depsguard.scanner import scan
+
 from depsguard.analyzer import analyze_breaking_changes
+from depsguard.models import Package, ScanReport
 from depsguard.parsers import parse_dependency_file
-from depsguard.models import Package
+from depsguard.scanner import scan
 
 mcp = FastMCP(
     name="depsguard",

@@ -29,6 +29,9 @@ depsguard-mcp = "depsguard.server:serve"
 [tool.hatch.build.targets.wheel]
 packages = ["src/depsguard"]
 
+[tool.ruff]
+line-length = 120
+
 [tool.ruff.lint]
 select = ["E", "F", "I"]
 

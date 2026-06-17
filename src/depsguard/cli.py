@@ -1,10 +1,11 @@
 from __future__ import annotations
-import asyncio
+
 import argparse
-import sys
-from depsguard.scanner import scan
+import asyncio
+
 from depsguard.analyzer import analyze_breaking_changes
 from depsguard.models import Package
+from depsguard.scanner import scan
 
 
 def main():

@@ -1,9 +1,11 @@
 from __future__ import annotations
+
 import asyncio
-from depsguard.models import Package, ScanReport, Severity
-from depsguard.parsers import parse_dependency_file
-from depsguard.db import query_osv
+
 from depsguard.analyzer import analyze_impact
+from depsguard.db import query_osv
+from depsguard.models import ScanReport, Severity
+from depsguard.parsers import parse_dependency_file
 
 
 async def scan(dependency_file: str, project_root: str, ai_analysis: bool = True) -> ScanReport:

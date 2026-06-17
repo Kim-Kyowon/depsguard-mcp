@@ -1,7 +1,7 @@
-from pathlib import Path
 import pytest
-from depsguard.parsers.python import parse_requirements, parse_pyproject
+
 from depsguard.parsers.node import parse_package_json
+from depsguard.parsers.python import parse_requirements
 
 
 @pytest.fixture

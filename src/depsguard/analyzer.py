@@ -1,9 +1,19 @@
 from __future__ import annotations
+
 import ast
+import json
 import os
 from pathlib import Path
+
 from litellm import acompletion
-from depsguard.models import Package, Vulnerability, ImpactAnalysis, BreakingChange, UpgradeAnalysis
+
+from depsguard.models import (
+    BreakingChange,
+    ImpactAnalysis,
+    Package,
+    UpgradeAnalysis,
+    Vulnerability,
+)
 
 _PROVIDER = os.getenv("DEPSGUARD_LLM_PROVIDER", "anthropic")
 _MODEL_MAP = {
@@ -53,7 +63,8 @@ async def analyze_impact(
         f"  {u['file']}:{u['line']} — {u['detail']}" for u in usages
     ) or "  (사용 패턴 없음)"
 
-    prompt = f"""당신은 보안 전문가입니다. 아래 정보를 바탕으로 취약점이 이 프로젝트에 실제로 영향을 미치는지 판단하세요.
+    prompt = f"""당신은 보안 전문가입니다. 아래 정보를 바탕으로
+취약점이 이 프로젝트에 실제로 영향을 미치는지 판단하세요.
 
 패키지: {package.name} {package.version}
 취약점: {vuln.id} (CVSS: {vuln.cvss_score}, 심각도: {vuln.severity})
@@ -76,7 +87,6 @@ async def analyze_impact(
         messages=[{"role": "user", "content": prompt}],
         response_format={"type": "json_object"},
     )
-    import json
     result = json.loads(resp.choices[0].message.content)
 
     return ImpactAnalysis(
@@ -130,7 +140,6 @@ Changelog/마이그레이션 가이드:
         messages=[{"role": "user", "content": prompt}],
         response_format={"type": "json_object"},
     )
-    import json
     result = json.loads(resp.choices[0].message.content)
 
     return UpgradeAnalysis(

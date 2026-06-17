@@ -1,7 +1,8 @@
 from pathlib import Path
+
 from depsguard.models import Package
-from depsguard.parsers.python import parse_requirements, parse_pyproject
 from depsguard.parsers.node import parse_package_json
+from depsguard.parsers.python import parse_pyproject, parse_requirements
 
 
 def parse_dependency_file(filepath: str) -> list[Package]:

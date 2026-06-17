@@ -1,5 +1,7 @@
 from __future__ import annotations
+
 import os
+
 from depsguard.http import make_client
 
 NVD_API = "https://services.nvd.nist.gov/rest/json/cves/2.0"
@@ -18,7 +20,7 @@ async def query_nvd(cve_id: str) -> dict | None:
             resp.raise_for_status()
             items = resp.json().get("vulnerabilities", [])
             return items[0] if items else None
-        except httpx.HTTPError:
+        except Exception:
             return None
 
 

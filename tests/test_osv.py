@@ -1,7 +1,8 @@
-import pytest
-import httpx
 from unittest.mock import AsyncMock, MagicMock, patch
-from depsguard.db.osv import query_osv, _severity_from_score
+
+import pytest
+
+from depsguard.db.osv import _severity_from_score, query_osv
 from depsguard.models import Package, Severity
 
 MOCK_OSV_RESPONSE = {
